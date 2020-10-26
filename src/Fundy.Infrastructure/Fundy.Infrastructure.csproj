@@ -18,7 +18,7 @@
   </ItemGroup>
   
   <ItemGroup>
-    <ProjectReference Include="..\CleanArchitecture.Core\Fundy.Core.csproj" />
-    <ProjectReference Include="..\CleanArchitecture.SharedKernel\Fundy.SharedKernel.csproj" />
+    <ProjectReference Include="..\Fundy.Core\Fundy.Core.csproj" />
+    <ProjectReference Include="..\Fundy.SharedKernel\Fundy.SharedKernel.csproj" />
   </ItemGroup>
 </Project>

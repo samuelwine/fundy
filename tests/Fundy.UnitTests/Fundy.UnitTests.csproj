@@ -23,7 +23,7 @@
   </ItemGroup>
   
   <ItemGroup>
-    <ProjectReference Include="..\..\src\CleanArchitecture.Web\Fundy.Web.csproj" />
+    <ProjectReference Include="..\..\src\Fundy.Web\Fundy.Web.csproj" />
   </ItemGroup>
 
 </Project>
