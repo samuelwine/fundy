@@ -36,9 +36,10 @@ namespace Fundy.Web
 			});
 
 			string connectionString = Configuration.GetConnectionString("DefaultConnection");
+			string databaseName = Configuration.GetConnectionString("DatabaseName");
 
 
-			services.AddDbContext(connectionString);
+			services.AddDbContext(connectionString, databaseName, _env);
 
 			services.AddControllersWithViews().AddNewtonsoftJson();
 			services.AddRazorPages();
