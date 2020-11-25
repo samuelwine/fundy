@@ -7,21 +7,10 @@ namespace Fundy.Infrastructure
 {
 	public static class StartupSetup
 	{
-		public static void AddDbContext(this IServiceCollection services, string connectionString, string databaseName, IWebHostEnvironment _env)
+		public static void AddDbContext(this IServiceCollection services, string connectionString)
         {
-			if (_env.EnvironmentName == "Development")
-			{
 				services.AddDbContext<AppDbContext>(options =>
 				options.UseSqlServer(connectionString)); // will be created in web project root
-			}
-
-            if (_env.EnvironmentName == "Production")
-            {
-				services.AddDbContext<AppDbContext>(options =>
-				options.UseCosmos(connectionString, databaseName));
-			}
-			
 		}
 	}
-			
 }
