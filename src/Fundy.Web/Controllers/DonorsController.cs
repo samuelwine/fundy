@@ -21,6 +21,7 @@ namespace Fundy.Web.Controllers
         public async Task<IActionResult> Index()
         {
             var donorList = (await _repository.ListAsync<Donor>()).Select(DonorDTO.FromDonor).ToList();
+            ///test azure ceploy
             return View(donorList);
         }
     }
