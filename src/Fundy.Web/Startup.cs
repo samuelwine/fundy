@@ -4,18 +4,14 @@ using Fundy.Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
-using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Fundy.Web
 {
-	public class Startup
+    public class Startup
 	{
 		private readonly IWebHostEnvironment _env;
 
@@ -27,36 +23,38 @@ namespace Fundy.Web
 
 		public IConfiguration Configuration { get; }
 
-		//public void ConfigureDevelopmentServices(IServiceCollection services)
-		//{
-		//	services.Configure<CookiePolicyOptions>(options =>
-		//	{
-		//		options.CheckConsentNeeded = context => true;
-		//		options.MinimumSameSitePolicy = SameSiteMode.None;
-		//	});
+        public void ConfigureDevelopmentServices(IServiceCollection services)
+        {
+            services.Configure<CookiePolicyOptions>(options =>
+            {
+                options.CheckConsentNeeded = context => true;
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+            });
 
-		//	string connectionString = Configuration.GetConnectionString("DefaultConnection");
+            string connectionString = Configuration.GetConnectionString("DefaultConnection");
 
-		//	services.AddDbContext(connectionString);
+            services.AddDevelopmentDbContext(connectionString);
 
-		//	services.AddControllersWithViews().AddNewtonsoftJson();
-		//	services.AddRazorPages();
+            services.AddControllersWithViews().AddNewtonsoftJson();
+            services.AddRazorPages();
 
-		//	services.AddSwaggerGen(c => {
-		//		c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
-		//		c.EnableAnnotations();
-		//	});
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
+                c.EnableAnnotations();
+            });
 
-		//	// add list services for diagnostic purposes - see https://github.com/ardalis/AspNetCoreStartupServices
-		//	services.Configure<ServiceConfig>(config =>
-		//	{
-		//		config.Services = new List<ServiceDescriptor>(services);
+            // add list services for diagnostic purposes - see https://github.com/ardalis/AspNetCoreStartupServices
+            services.Configure<ServiceConfig>(config =>
+            {
+                config.Services = new List<ServiceDescriptor>(services);
 
-		//		// optional - default path to view services is /listallservices - recommended to choose your own path
-		//		config.Path = "/listservices";
-		//	});
-		//}
-		public void ConfigureServices(IServiceCollection services)
+                // optional - default path to view services is /listallservices - recommended to choose your own path
+                config.Path = "/listservices";
+            });
+        }
+
+        public void ConfigureProductionServices(IServiceCollection services)
 		{
 			services.Configure<CookiePolicyOptions>(options =>
 			{
@@ -64,9 +62,11 @@ namespace Fundy.Web
 				options.MinimumSameSitePolicy = SameSiteMode.None;
 			});
 
-			string connectionString = Configuration.GetConnectionString("DefaultConnection");
+			string accountEndpoint = Configuration.GetValue<string>("accountendpoint");
+			string accountKey = Configuration.GetValue<string>("accountKey");
+			string databaseName = Configuration.GetValue<string>("databaseName");
 
-			services.AddDbContext(connectionString);
+			services.AddProductionDbContext(accountEndpoint, accountKey, databaseName);
 
 			services.AddControllersWithViews().AddNewtonsoftJson();
 			services.AddRazorPages();
