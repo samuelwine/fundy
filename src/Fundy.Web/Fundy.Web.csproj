@@ -10,6 +10,14 @@
   </PropertyGroup>
   
   <ItemGroup>
+    <Content Remove="web.config" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <None Include="web.config" />
+  </ItemGroup>
+  
+  <ItemGroup>
     <PackageReference Include="Ardalis.ApiEndpoints" Version="2.0.0" />
     <PackageReference Include="Ardalis.ListStartupServices" Version="1.1.3" />
     <PackageReference Include="MediatR" Version="8.1.0" />
