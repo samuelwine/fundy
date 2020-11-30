@@ -21,7 +21,7 @@ namespace Fundy.FunctionalTests
             response.EnsureSuccessStatusCode();
             string stringResponse = await response.Content.ReadAsStringAsync();
 
-            Assert.Contains("Fundy.Web", stringResponse);
+            Assert.Contains("Fundy", stringResponse);
         }
     }
 }
