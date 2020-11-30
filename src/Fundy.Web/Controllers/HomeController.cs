@@ -6,7 +6,8 @@ namespace Fundy.Web.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            //return View();
+            return RedirectToAction("Index", "Donors");
         }
 
         public IActionResult Error()
