@@ -1,20 +1,22 @@
 ﻿@model List<Fundy.Web.ApiModels.DonorDTO>
 <h3>Donors</h3>
 
-<table>
-    <thead>
-        <tr>
-            <th>Name</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var donor in Model)
-        {
-            <tr>
-                <td>@donor.Title</td>
-                <td>@donor.FirstName</td>
-                <td>@donor.LastName</td>
-            </tr>
-        }
-    </tbody>
-</table>
+<div class="col-md-8">
+    <div class="donors-table">
+        <table class="table table-hover">
+            <tbody>
+                @foreach (var donor in Model)
+                {
+                    <tr>
+                        <td>@donor.LastName</td>
+                        <td>@donor.Title</td>
+                        <td>@donor.FirstName</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="col-md-4">
+    
+</div>
