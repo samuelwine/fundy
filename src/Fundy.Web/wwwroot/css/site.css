@@ -36,3 +36,22 @@ textarea {
     display: none
   }
 }
+
+.layout-navbar-text{
+    color: white;
+}
+
+.layout-navbar-text:hover {
+    color: white;
+}
+
+.donors-table > .table-hover > tbody > tr:hover {
+    background-color: aliceblue;
+    border-radius: 25px;
+}
+
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+    border-bottom: 1px solid #ddd;
+}
+
+
