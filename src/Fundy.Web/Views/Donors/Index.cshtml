@@ -1,22 +1,62 @@
 ﻿@model List<Fundy.Web.ApiModels.DonorDTO>
-<h3>Donors</h3>
+
 
 <div class="col-md-8">
+    <h3>Donors</h3>
     <div class="donors-table">
-        <table class="table table-hover">
+        <table class="table">
             <tbody>
-                @foreach (var donor in Model)
+                @foreach (var donor in Model.OrderBy(x => x.LastName))
                 {
-                    <tr>
-                        <td>@donor.LastName</td>
-                        <td>@donor.Title</td>
-                        <td>@donor.FirstName</td>
+                    <tr class="donor-row noselect" data-donor-id="@donor.Id">
+                        <td class="col-xs-3">@donor.LastName</td>
+                        <td class="col-xs-3">@donor.FirstName</td>
+                        <td class="col-xs-3">@donor.Title</td>
+                        <td class="col-xs-3">
+                            <button type="button" data-donor-id="@donor.Id" class="show-donor-details-button">View donor</button>
+                        </td>
                     </tr>
                 }
             </tbody>
         </table>
     </div>
 </div>
+
 <div class="col-md-4">
-    
+    <h3>Contact Details</h3>
+    <div id="contact-details"></div>
 </div>
+
+@section Scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('tbody tr:first-child').click();
+        });
+
+        $('tr').click(function (event) {
+            $(this).addClass('selected-donor').removeClass('donor-row').siblings().removeClass('selected-donor').addClass('donor-row');
+            var selectedDonorId = $(this).attr('data-donor-id');
+            $.ajax({
+                url: "/donors/Addresses",
+                data: { selectedDonorId: selectedDonorId },
+                success: function (result) {
+                    $('#contact-details').empty();
+                    result.forEach(function (address) {
+                        $("<h5>" + address.addressType + "</h5>").addClass('address-type-label').appendTo($('#contact-details'))
+                        $("<p>" + address.line1 + "</p>").addClass('address-detail').appendTo($('#contact-details'))
+                        $("<p>" + address.city + "</p>").addClass('address-detail').appendTo($('#contact-details'))
+                        $("<p>" + address.postcode_Zip + "</p>").addClass('address-detail').appendTo($('#contact-details'))
+                        $("<p>" + address.country + "</p>").addClass('address-detail').appendTo($('#contact-details'))
+                    })
+                }
+            });
+        });
+
+        $('.show-donor-details-button').click(function (event) {
+            var selectedDonorId = $(this).attr('data-donor-id');
+            window.location.href = (`/donors/DonorDetails/${selectedDonorId}`);
+        });
+
+    </script>
+}

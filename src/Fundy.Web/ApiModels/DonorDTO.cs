@@ -6,23 +6,30 @@ namespace Fundy.Web.ApiModels
     public class DonorDTO
     {
         [Required]
+        public int Id { get; set; }
+        [Required]
         public string FirstName { get; set; }
+        
         [Required]
         public string LastName { get; set; }
+        
         public string? Title { get; set; }
-
-        public DonorDTO(string firstName, string lastName)
+       
+        public DonorDTO(int id, string firstName, string lastName)
         {
+            Id = id;
             FirstName = firstName;
             LastName = lastName;
         }
 
         public static DonorDTO FromDonor(Donor donor)
         {
-            return new DonorDTO(donor.Name.FirstName, donor.Name.LastName)
+            var donorDTO = new DonorDTO(donor.Id, donor.Name.FirstName, donor.Name.LastName)
             {
                 Title = donor.Name.Title,
             };
+
+            return donorDTO;
         }
     }
 }
