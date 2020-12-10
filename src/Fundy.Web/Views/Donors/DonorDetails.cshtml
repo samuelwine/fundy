@@ -1,0 +1,50 @@
+﻿@model Fundy.Web.ApiModels.DonorDetailsDTO
+<div class="back-to-donors-button">
+    <button type="button" id="back-to-donors">Back to Donors</button>
+</div>
+
+<div class="col-md-8">
+    <hr />
+    <div>
+        <h2>@Model.Donor.Title @Model.Donor.FirstName @Model.Donor.LastName</h2>
+    </div>
+   
+    <br />
+    <br />
+    <div>
+        <h3>Interaction History</h3>
+    </div>
+
+</div>
+
+<div class="col-md-4">
+    <h3>Contact Details</h3>
+    <div id="contact-details">
+        @foreach (var address in Model.Addresses)
+        {
+            <h5 class="address-type-label">@address.AddressType</h5>
+            <p class="address-detail">@address.Line1</p>
+            <p class="address-detail">@address.City</p>
+            <p class="address-detail">@address.Postcode_Zip</p>
+            <p class="address-detail">@address.Country</p>
+        }
+
+    </div>
+</div>
+
+
+
+
+
+
+
+@section Scripts
+{
+    <script type="text/javascript">
+
+        $('#back-to-donors').click(function () {
+            window.location.href = "/donors";
+        });
+
+    </script>
+}  

@@ -1,6 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    font-family: "Google Sans",Roboto,Arial,sans-serif;
 }
 
 /* Wrapping element */
@@ -37,7 +38,7 @@ textarea {
   }
 }
 
-.layout-navbar-text{
+.layout-navbar-text {
     color: white;
 }
 
@@ -45,13 +46,67 @@ textarea {
     color: white;
 }
 
-.donors-table > .table-hover > tbody > tr:hover {
+.donors-table tr {
+    cursor: pointer;
+}
+
+.donor-row:hover {
     background-color: aliceblue;
-    border-radius: 25px;
 }
 
 .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
     border-bottom: 1px solid #ddd;
+    line-height: 1.5;
 }
 
+.selected-donor {
+    font-weight: bold;
+    color: white;
+    background-color: #337ab7;
+}
 
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+#contact-details {
+    background-color: #d7e6f4;
+    padding: 1px 0px;
+}
+
+#contact-details > .address-detail {
+    background-color: white;
+    margin: 10px;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.address-type-label{
+    font-weight: bold;
+    margin: 10px;
+}
+
+.show-donor-details-button {
+    display: none;
+    height: 20px;
+    font-size: 11px;
+}
+
+.donor-row:hover .show-donor-details-button {
+    display: block;
+}
+
+.selected-donor:hover .show-donor-details-button {
+    display: block;
+    color: #337ab7;
+}
+
+.back-to-donors-button{
+    padding-top: 20px;
+}

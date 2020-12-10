@@ -68,6 +68,7 @@ namespace Fundy.Web
 			{
 				app.UseDeveloperExceptionPage();
 				app.UseShowAllServicesMiddleware();
+				app.UseBrowserLink();
 			}
 			else
 			{
